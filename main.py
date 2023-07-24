@@ -1,6 +1,6 @@
 import pandas as pd
 import re
-import string
+import string, sys
 
 # testing purpose
 BAD_WORDS = [",", "gamil", "gmil", ",", "gail", "gmal"]
@@ -70,19 +70,16 @@ class EmailValidator:
                 email = email.replace(s, "gmail")
         
         if self.check_domain(email) is True:
-            print(email)
-            return "Email Valid"
+            print("Email Valid")
+            return email
         else:
             return "Pattern not matched"
+        
         
     # def is_valid(self, email):
     #     return self.length_checker(email) and self.word_checker(email)
 
 # test code
 validator = EmailValidator()
-print("EMAIL VALIDATOR BETA")
-
-print("#" * 50)
-print("Please enter an email for checking it's validity: ")
-email = input()
+email = sys.argv[1]
 print(validator.word_checker_and_replace(email))
